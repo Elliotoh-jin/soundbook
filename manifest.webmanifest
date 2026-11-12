@@ -1,0 +1,29 @@
+{
+ "name": "인생수업 키즈 사운드북",
+ "short_name": "사운드북",
+ "lang": "ko",
+ "description": "아이 이름을 넣어 읽어 주는 그림 사운드북 — 홈 화면에 추가해 한 번 열어 두면 인터넷 없이도 열려요.",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#FFF7E8",
+ "theme_color": "#FFF7E8",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512-maskable.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
