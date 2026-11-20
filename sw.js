@@ -1,5 +1,5 @@
 /* 인생수업 키즈 사운드북 — 오프라인 저장(일반판 웹앱). build.py --edition generic 이 만든다: 직접 고치지 말 것 */
-const VERSION = '3342f99856';
+const VERSION = '8bd0021707';
 const CACHE = 'soundbook-' + VERSION;
 const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512-maskable.png", "./icon-512.png"];
 self.addEventListener('install', e => {
