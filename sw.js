@@ -15,9 +15,12 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
-  if (req.mode === 'navigate') {            // 어떤 주소로 열어도 저장된 앱(인터넷 없어도)
-    e.respondWith(caches.open(CACHE).then(c => c.match('./index.html')).then(r => r || fetch(req))
-      .catch(() => caches.match('./index.html')));
+  if (req.mode === 'navigate') {            // 인터넷이 되면 새 앱을 먼저(3초 안에), 안 되면 저장된 앱 — 어떤 주소로 열어도
+    // 11-22 실측: 저장된 앱을 먼저 주던 때, 옛 버전이 저장된 기기가 새 형식 링크(#get/<id>)를 못 알아보고 이름 화면으로 갔다
+    const saved = () => caches.open(CACHE).then(c => c.match('./index.html'));
+    const fresh = fetch('./index.html', { cache: 'no-store' }).then(r => { if (!r.ok) throw new Error('http'); return r; });
+    const late = new Promise((_, rej) => setTimeout(() => rej(new Error('slow')), 3000));
+    e.respondWith(Promise.race([fresh, late]).catch(() => saved().then(r => r || fresh)).catch(() => caches.match('./index.html')));
     return;
   }
   if (url.pathname.indexOf('/audio/') >= 0) { // 녹음 슬롯 — 없으면 바로 404(인터넷을 기다리지 않는다)
