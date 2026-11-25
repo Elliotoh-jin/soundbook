@@ -1,5 +1,5 @@
 /* 재잘일기 — 오프라인 저장(일반판 웹앱). build.py --edition generic 이 만든다: 직접 고치지 말 것 */
-const VERSION = 'b22b03dd81';
+const VERSION = '173edca3eb';
 const CACHE = 'soundbook-' + VERSION;
 const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-180.png", "./icon-192.png", "./icon-512-maskable.png", "./icon-512.png"];
 self.addEventListener('install', e => {
